@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminar habitación{% endblock %}
+
+{% block content %}
+<h1>Eliminar habitación</h1>
+<p>¿Seguro que deseas eliminar la <strong>{{ habitacion }}</strong>? Esta acción no se puede deshacer.</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+    <a href="{% url 'habitaciones:lista' %}" class="btn btn-outline-secondary">Cancelar</a>
+</form>
+{% endblock %}
