@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,7 +11,18 @@
     <nav class="navbar navbar-dark bg-dark mb-4">
         <div class="container">
             <a class="navbar-brand" href="#">Hotel Paradise</a>
-            <a class="nav-link text-white" href="{% url 'habitaciones:lista' %}">Habitaciones</a>
+
+            <a class="nav-link text-white" href="{% url 'habitaciones:lista' %}">
+                Habitaciones
+            </a>
+
+            <a class="nav-link text-white" href="{% url 'clientes:lista' %}">
+                Clientes
+            </a>
+
+            <a class="nav-link text-white" href="{% url 'reservaciones:lista' %}">
+                Reservaciones
+            </a>
         </div>
     </nav>
 
