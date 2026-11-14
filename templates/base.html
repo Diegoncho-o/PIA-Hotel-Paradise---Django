@@ -6,7 +6,299 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Hotel Paradise{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --naranja: #FF8C00;
+            --naranja-hover: #E67E00;
+            --crema: #FFF4E6;
+            --oscuro: #212529;
+        }
+
+        body {
+            background-color: #FFFFFF;
+        }
+
+        /* Barra de navegación */
+        .navbar {
+            background-color: var(--oscuro) !important;
+        }
+
+        .navbar-brand,
+        .navbar .nav-link {
+            color: var(--naranja) !important;
+            font-weight: 600;
+        }
+
+        .navbar .nav-link:hover,
+        .navbar-brand:hover {
+            color: #FFFFFF !important;
+        }
+
+        /* Títulos */
+        h1, h2, h3, h4 {
+            color: var(--naranja);
+        }
+
+        .titulo-habitaciones {
+            font-family: 'Poppins', sans-serif !important;
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #FF8C00;
+            text-transform: uppercase;
+        }
+
+        .titulo-formulario {
+            font-family: 'Poppins', sans-serif !important;
+            font-weight: 700;
+        }
+
+        /* Enlaces */
+        a {
+            color: var(--naranja);
+        }
+
+        /* Botones principales */
+        .btn-primary {
+            background-color: var(--naranja);
+            border-color: var(--naranja);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--naranja-hover);
+            border-color: var(--naranja-hover);
+        }
+
+        /* Botones de edición */
+        .btn-warning {
+            background-color: var(--naranja);
+            border-color: var(--naranja);
+            color: white;
+        }
+
+       .btn-warning:hover {
+            background-color: #1D4ED8 !important;
+            border-color: #1D4ED8 !important;
+            color: white !important;
+        }
+
+
+        /* Detalles */
+        .card {
+            border-radius: 12px;
+        }
+
+        /* Agregar */
+        .btn-primary {
+            background-color: #FF8C00;
+            border-color: #FF8C00;
+            color: white;
+        }
+
+        .btn-buscar {
+            background-color: #FF8C00 !important;
+            border-color: #FF8C00 !important;
+            color: black !important;
+            transition: 0.2s;
+        }
+
+        .btn-buscar:hover {
+            background-color: #CC7000 !important;
+            border-color: #CC7000 !important;
+            color: black !important;
+        }
+
+        /* Editar */
+        .btn-warning {
+            background-color: #2563EB  !important;
+            border-color: #2563EB  !important;
+            color: white  !important;
+        }
+
+        /* Eliminar */
+        .btn-danger {
+            background-color: #DC3545;
+            border-color: #DC3545;
+            color: white;
+        }
+
+        a.btn-limpiar,
+        a.btn-limpiar:visited {
+            background-color: #6C757D !important;
+            border: 1px solid #6C757D !important;
+            color: #FFFFFF !important;
+        }
+
+        a.btn-limpiar:hover {
+            background-color: #495057 !important;
+            border-color: #495057 !important;
+            color: #FFFFFF !important;
+        }
+
+        .table thead th {
+            background-color: #FF8C00;
+            color: #000000;
+            font-weight: bold;
+            padding: 14px;
+        }
+
+       .table tbody tr:nth-child(odd) > * {
+            background-color: #FFF4E6;
+        }
+
+        .table tbody tr:nth-child(even) > * {
+            background-color: #FFFFFF;
+        }
+
+        .table tbody tr:hover > * {
+            background-color: #FFE0B2 !important;
+            transition: background-color 0.2s ease;
+        }
+
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .table-habitaciones td {
+            vertical-align: middle;
+        }
+
+        .table-habitaciones td:first-child {
+            text-align: center !important;
+            width: 120px;
+        }
+
+        .table-habitaciones td:first-child .contenedor-foto {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-control:focus,
+        .form-select:focus,
+        input:focus,
+        select:focus {
+            border-color: #FF8C00 !important;
+            box-shadow: 0 0 0 0.2rem rgba(255, 140, 0, 0.20) !important;
+            outline: none;
+        }
+
+        .navbar .nav-link {
+            transition: color 0.2s ease;
+        }
+
+        .navbar .nav-link:hover {
+            color: #FF8C00 !important;
+            text-decoration: underline;
+        }
+
+        input[type="text"],
+        input[type="search"],
+        select {
+            border-radius: 8px;
+        }
+
+        input[type="text"]:focus,
+        input[type="search"]:focus,
+        select:focus {
+            border-color: #FF8C00;
+            box-shadow: 0 0 0 0.2rem rgba(255, 140, 0, 0.20);
+        }
+
+        .contenedor-foto {
+            width: 80px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: #FFF4E6;
+        }
+
+        .contenedor-foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .contenedor-foto span {
+            font-size: 12px;
+            color: #6C757D;
+        }
+
+        button.btn-buscar,
+        button.btn-buscar:visited,
+        button.btn-buscar:focus,
+        button.btn-buscar:active {
+            background-color: #FF8C00 !important;
+            background-image: none !important;
+            border: 1px solid #FF8C00 !important;
+            color: #000000 !important;
+            box-shadow: none;
+        }
+
+        button.btn-buscar:hover {
+            background-color: #CC7000 !important;
+            background-image: none !important;
+            border-color: #CC7000 !important;
+            color: #000000 !important;
+        }
+
+        button.btn-buscar {
+            background-color: #2563EB !important;
+            border: 1px solid #2563EB !important;
+            color: white !important;
+            transition: 0.2s;
+        }
+
+        button.btn-buscar:hover {
+            background-color: #1D4ED8 !important;
+            border-color: #1D4ED8 !important;
+            color: white !important;
+        }
+
+        /* Tipografía de la barra superior */
+        .navbar,
+        .navbar-brand,
+        .navbar .nav-link {
+            font-family: 'Poppins', sans-serif !important;
+        }
+
+        .navbar-brand {
+            font-size: 22px;
+            font-weight: 800 !important;
+        }
+
+        .navbar .nav-link {
+            font-size: 15px;
+            font-weight: 600 !important;
+        }
+
+    </style>
+
 </head>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const mensajes = document.querySelectorAll(".mensaje-temporal");
+
+        mensajes.forEach(function (mensaje) {
+            setTimeout(function () {
+                mensaje.style.transition = "opacity 0.5s ease";
+                mensaje.style.opacity = "0";
+
+                setTimeout(function () {
+                    mensaje.remove();
+                }, 500);
+
+            }, 4000);
+        });
+    });
+</script>
+
 <body>
     <nav class="navbar navbar-dark bg-dark mb-4">
         <div class="container">
@@ -29,7 +321,8 @@
     <div class="container">
         {% if messages %}
             {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                <div class="alert alert-{{ message.tags }} mensaje-temporal
+                ">{{ message }}</div>
             {% endfor %}
         {% endif %}
 

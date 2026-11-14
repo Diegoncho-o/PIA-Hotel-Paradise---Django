@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'habitaciones',
     'clientes',
     'reservaciones',
-
+    'django.forms',
 ]
 
 MIDDLEWARE = [
@@ -136,3 +136,5 @@ from django.contrib.messages import constants as messages_constants
 MESSAGE_TAGS = {
     messages_constants.ERROR: 'danger',
 }
+
+FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'

@@ -3,7 +3,7 @@
 {% block title %}{{ titulo }}{% endblock %}
 
 {% block content %}
-<h1>{{ titulo }}</h1>
+<h1 class="titulo-formulario">{{ titulo }}</h1>
 
 <form method="post" enctype="multipart/form-data" class="mt-3">
     {% csrf_token %}

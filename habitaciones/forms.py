@@ -1,7 +1,13 @@
 
 from django import forms
+from django.forms import ClearableFileInput
 from .models import Habitacion
 
+class ImagenWidget(ClearableFileInput):
+    template_name = 'habitaciones/widgets/imagen_widget.html'
+    initial_text = 'Actualmente'
+    input_text = 'Cambio'
+    clear_checkbox_label = 'Limpiar'
 
 class HabitacionForm(forms.ModelForm):
 
@@ -18,6 +24,7 @@ class HabitacionForm(forms.ModelForm):
             'numero': forms.NumberInput(attrs={'class': 'form-control'}),
             'tipo': forms.Select(attrs={'class': 'form-select'}),
             'precioxnoche': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01'}),
+            'imagen': ImagenWidget(),
         }
 
     def clean_precioxnoche(self):
