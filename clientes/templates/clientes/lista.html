@@ -1,9 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Lista de Clientes</title>
-    <!-- Si usas Bootstrap, puedes incluirlo aquí -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="container mt-4">
@@ -18,10 +18,26 @@
 
     <a href="{% url 'clientes:crear' %}" class="btn btn-primary mb-3">Nuevo Cliente</a>
 
+    <!-- Buscador de clientes -->
+    <form method="GET" class="mb-3">
+        <div class="input-group">
+            <input
+                type="text"
+                name="q"
+                class="form-control"
+                placeholder="Buscar por nombre o correo..."
+                value="{{ q }}"
+            >
+            <button type="submit" class="btn btn-primary">Buscar</button>
+            <a href="{% url 'clientes:lista' %}" class="btn btn-secondary">Limpiar</a>
+        </div>
+    </form>
+
     <table class="table table-striped">
         <thead>
             <tr>
                 <th>Nombre</th>
+                <th>Apellidos</th>
                 <th>Correo</th>
                 <th>Teléfono</th>
                 <th>Acciones</th>
@@ -31,6 +47,7 @@
             {% for cliente in clientes %}
             <tr>
                 <td>{{ cliente.nombre }}</td>
+                <td>{{ cliente.apellidos }}</td>
                 <td>{{ cliente.correo }}</td>
                 <td>{{ cliente.telefono }}</td>
                 <td>
@@ -40,10 +57,11 @@
             </tr>
             {% empty %}
             <tr>
-                <td colspan="4" class="text-center">No hay clientes registrados.</td>
+                <td colspan="5" class="text-center">No hay clientes registrados.</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+
 </body>
 </html>
