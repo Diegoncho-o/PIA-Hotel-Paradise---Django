@@ -302,19 +302,32 @@
 <body>
     <nav class="navbar navbar-dark bg-dark mb-4">
         <div class="container">
-            <a class="navbar-brand" href="#">Hotel Paradise</a>
+            <a class="navbar-brand" href="{% url 'dashboard' %}">Hotel Paradise</a>
 
-            <a class="nav-link text-white" href="{% url 'habitaciones:lista' %}">
-                Habitaciones
-            </a>
+            {% if user.is_authenticated %}
+                <a class="nav-link text-white" href="{% url 'habitaciones:lista' %}">
+                    Habitaciones
+                </a>
 
-            <a class="nav-link text-white" href="{% url 'clientes:lista' %}">
-                Clientes
-            </a>
+                <a class="nav-link text-white" href="{% url 'clientes:lista' %}">
+                    Clientes
+                </a>
 
-            <a class="nav-link text-white" href="{% url 'reservaciones:lista' %}">
-                Reservaciones
-            </a>
+                <a class="nav-link text-white" href="{% url 'reservaciones:lista' %}">
+                    Reservaciones
+                </a>
+
+                <a class="nav-link text-white" href="{% url 'reportes' %}">
+                    Reportes
+                </a>
+
+                <form method="post" action="{% url 'logout' %}" class="m-0">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm btn-primary">
+                        Cerrar sesión ({{ user.username }})
+                    </button>
+                </form>
+            {% endif %}
         </div>
     </nav>
 

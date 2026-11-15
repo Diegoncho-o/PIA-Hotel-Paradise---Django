@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.db.models import ProtectedError
-
+from django.contrib.auth.decorators import login_required
 from .models import Habitacion
 from .forms import HabitacionForm
+
+@login_required
 def lista_habitaciones(request):
     habitaciones = Habitacion.objects.all()
 
@@ -24,6 +26,7 @@ def lista_habitaciones(request):
     }
     return render(request, 'habitaciones/lista.html', contexto)
 
+@login_required
 def crear_habitacion(request):
     if request.method == 'POST':
         form = HabitacionForm(request.POST, request.FILES)
@@ -38,6 +41,7 @@ def crear_habitacion(request):
                   {'form': form, 'titulo': 'Nueva habitación'})
 
 
+@login_required
 def editar_habitacion(request, pk):
     habitacion = get_object_or_404(Habitacion, pk=pk)
 
@@ -54,6 +58,7 @@ def editar_habitacion(request, pk):
                   {'form': form, 'titulo': f'Editar habitación {habitacion.numero}'})
 
 
+@login_required
 def eliminar_habitacion(request, pk):
     habitacion = get_object_or_404(Habitacion, pk=pk)
 

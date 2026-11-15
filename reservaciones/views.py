@@ -1,12 +1,12 @@
 from django.contrib import messages
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
-
+from django.contrib.auth.decorators import login_required
 from habitaciones.models import Habitacion
 from .forms import ReservacionForm, DisponibilidadForm
 from .models import Reservacion
 
-
+@login_required
 def lista_reservaciones(request):
     reservaciones = Reservacion.objects.select_related('cliente', 'habitacion')
 
@@ -32,7 +32,7 @@ def lista_reservaciones(request):
         'q': q, 'tipo_actual': tipo, 'estado_actual': estado,
     })
 
-
+@login_required
 def consultar_disponibilidad(request):
     form = DisponibilidadForm(request.GET or None)
     libres = None
@@ -56,7 +56,7 @@ def consultar_disponibilidad(request):
                   {'form': form, 'libres': libres})
 
 
-
+@login_required
 def crear_reservacion(request):
     if request.method == 'POST':
         form = ReservacionForm(request.POST)
@@ -72,7 +72,7 @@ def crear_reservacion(request):
         'titulo': 'Nueva reservación',
     })
 
-
+@login_required
 def editar_reservacion(request, pk):
     reservacion = get_object_or_404(Reservacion, pk=pk)
 
@@ -94,7 +94,7 @@ def editar_reservacion(request, pk):
         'titulo': f'Editar reservación #{reservacion.pk}',
     })
 
-
+@login_required
 def cancelar_reservacion(request, pk):
     reservacion = get_object_or_404(Reservacion, pk=pk)
 

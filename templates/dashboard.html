@@ -148,25 +148,23 @@
 
     <h3 class="seccion-titulo">Accesos rápidos</h3>
 
-    <div class="row g-3">
-
-        <div class="col-md-4">
-            <a href="{% url 'habitaciones:lista' %}" class="acceso">
-                 Administrar habitaciones
-            </a>
+    <div class="row g-3 mb-4">
+        <div class="col-md-6 col-lg">
+            <a href="{% url 'habitaciones:lista' %}" class="acceso">Administrar habitaciones</a>
         </div>
-
-        <div class="col-md-4">
-            <a href="{% url 'clientes:lista' %}" class="acceso">
-                 Administrar clientes
-            </a>
+        <div class="col-md-6 col-lg">
+            <a href="{% url 'clientes:lista' %}" class="acceso">Administrar clientes</a>
         </div>
-
-        <div class="col-md-4">
-            <a href="{% url 'reservaciones:lista' %}" class="acceso">
-                 Administrar reservaciones
-            </a>
+        <div class="col-md-6 col-lg">
+            <a href="{% url 'reservaciones:lista' %}" class="acceso">Administrar reservaciones</a>
         </div>
+        <div class="col-md-6 col-lg">
+            <a href="{% url 'reservaciones:disponibilidad' %}" class="acceso">Consultar disponibilidad</a>
+        </div>
+        <div class="col-md-6 col-lg">
+            <a href="{% url 'reportes' %}" class="acceso">Ver reportes</a>
+        </div>
+    </div>
 
     </div>
 

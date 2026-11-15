@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q, ProtectedError
-
+from django.contrib.auth.decorators import login_required
 from .models import Cliente
 from .forms import ClienteForm
 
-
+@login_required
 def lista_clientes(request):
     clientes = Cliente.objects.all()
 
@@ -21,7 +21,7 @@ def lista_clientes(request):
     # Corregido a minúsculas 'clientes/lista.html' para que coincida con tu carpeta
     return render(request, 'clientes/lista.html', contexto)
 
-
+@login_required
 def crear_cliente(request):
     if request.method == 'POST':
         form = ClienteForm(request.POST)
@@ -38,7 +38,7 @@ def crear_cliente(request):
         'titulo': 'Nuevo cliente'
     })
 
-
+@login_required
 def editar_cliente(request, pk):
     cliente = get_object_or_404(Cliente, pk=pk)
 
@@ -56,7 +56,7 @@ def editar_cliente(request, pk):
         'titulo': f'Editar cliente {cliente.nombre}'
     })
 
-
+@login_required
 def eliminar_cliente(request, pk):
     cliente = get_object_or_404(Cliente, pk=pk)
 
