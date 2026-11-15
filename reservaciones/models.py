@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.exceptions import ValidationError
-from django.db import models
+
 
 from clientes.models import Cliente
 from habitaciones.models import Habitacion
@@ -69,4 +69,4 @@ class Reservacion(models.Model):
     def save(self, *args, **kwargs):
         self.total = self.noches * self.habitacion.precioxnoche
         super().save(*args, **kwargs)
-# Create your models here.
+

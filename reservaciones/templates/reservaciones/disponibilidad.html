@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Disponibilidad{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="titulo-habitaciones">Disponibilidad</h1>
+    <a href="{% url 'reservaciones:crear' %}" class="btn btn-primary">Nueva reservación</a>
+</div>
+
+<!-- Buscador por fechas -->
+<form method="GET" class="row g-2 mb-4">
+
+    <div class="col-md-3">
+        <label for="{{ form.fecha_entrada.id_for_label }}" class="form-label">Fecha de entrada</label>
+        {{ form.fecha_entrada }}
+    </div>
+
+    <div class="col-md-3">
+        <label for="{{ form.fecha_salida.id_for_label }}" class="form-label">Fecha de salida</label>
+        {{ form.fecha_salida }}
+    </div>
+
+    <div class="col-md-3">
+        <label for="{{ form.tipo.id_for_label }}" class="form-label">Tipo</label>
+        {{ form.tipo }}
+    </div>
+
+    <div class="col-md-3 d-flex gap-2 align-items-end">
+        <button type="submit" class="btn btn-buscar">Buscar</button>
+        <a href="{% url 'reservaciones:disponibilidad' %}" class="btn btn-limpiar">Limpiar</a>
+    </div>
+
+</form>
+
+{% for error in form.non_field_errors %}
+    <div class="alert alert-danger">{{ error }}</div>
+{% endfor %}
+
+{% if libres is not None %}
+    <table class="table text-center align-middle">
+        <thead>
+            <tr>
+                <th>Número</th>
+                <th>Tipo</th>
+                <th>Precio/noche</th>
+                <th>Capacidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for habitacion in libres %}
+            <tr>
+                <td>{{ habitacion.numero }}</td>
+                <td>{{ habitacion.get_tipo_display }}</td>
+                <td>${{ habitacion.precioxnoche }}</td>
+                <td>{{ habitacion.capacidad }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="text-center">No hay habitaciones disponibles en esas fechas.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+{% endblock %}
